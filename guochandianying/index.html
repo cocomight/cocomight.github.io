@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="国产电影排行榜 - 提供最新最全的国产电影评分排名、票房数据及观影指南。涵盖动作、喜剧、剧情、悬疑等多种类型，助您发现高分佳作。">
+    <meta name="keywords" content="国产电影排行榜,国产电影,电影评分,电影票房,最新电影">
+    <title>国产电影排行榜 - 热门高分佳作与观影指南</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #e50914;
+            --secondary-color: #b81d24;
+            --bg-color: #141414;
+            --card-bg: #1f1f1f;
+            --text-main: #ffffff;
+            --text-sub: #b3b3b3;
+            --accent-gold: #ffc107;
+            --spacing-unit: 1rem;
+            --border-radius: 8px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+        }
+
+        nav a.active {
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(to top, var(--bg-color), transparent), url('https://picsum.photos/seed/cinema/1920/600') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--text-sub);
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--text-sub);
+            color: var(--text-main);
+            margin-left: 1rem;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text-main);
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Section Styles */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 1rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--text-main);
+        }
+
+        .section-more {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+        }
+
+        /* Top List (Rankings) */
+        .rank-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .rank-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+        }
+
+        .rank-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .rank-number {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 30px;
+            height: 30px;
+            background-color: var(--accent-gold);
+            color: #000;
+            font-weight: bold;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .rank-card.top-1 .rank-number {
+            background-color: #ff4757;
+            color: white;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            background-color: #333;
+        }
+
+        .card-content {
+            padding: 1rem;
+        }
+
+        .card-meta {
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .rating-badge {
+            background-color: rgba(255, 193, 7, 0.2);
+            color: var(--accent-gold);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Genre Filter Tabs */
+        .genre-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .genre-tab {
+            padding: 0.5rem 1rem;
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            color: var(--text-sub);
+            white-space: nowrap;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .genre-tab.active, .genre-tab:hover {
+            background-color: rgba(229, 9, 20, 0.1);
+            color: var(--primary-color);
+            border-color: rgba(229, 9, 20, 0.3);
+        }
+
+        /* Latest News Section */
+        .news-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .news-list {
+            list-style: none;
+        }
+
+        .news-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-date {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            min-width: 60px;
+        }
+
+        .news-content h3 {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .news-content p {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+        }
+
+        /* Sidebar Widget */
+        .sidebar-widget {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+        }
+
+        .widget-title {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #333;
+        }
+
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background-color: #333;
+            color: var(--text-sub);
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        .tag:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000;
+            padding: 3rem 1rem 1rem;
+            margin-top: 3rem;
+            border-top: 1px solid #333;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col h4 {
+            color: var(--text-main);
+            margin-bottom: 1rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-col a {
+            color: var(--text-sub);
+            font-size: 0.9rem;
+        }
+
+        .footer-col a:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            color: #555;
+            font-size: 0.8rem;
+            padding-top: 1rem;
+            border-top: 1px solid #222;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                display: none; /* Simplified for mobile */
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <span>🎬</span> 影视指南
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">首页</a></li>
+                <li><a href="#">国产电影</a></li>
+                <li><a href="#">国际影讯</a></li>
+                <li><a href="#">影迷社区</a></li>
+                <li><a href="#">关于我们</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>国产电影排行榜</h1>
+                <p>汇聚年度最热国产佳作，提供最新票房数据与专业影评。从经典老片到年度黑马，助您发现值得二刷的高分好片。</p>
+                <div>
+                    <button class="btn btn-primary">立即观影</button>
+                    <button class="btn btn-outline">查看榜单</button>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- Genre Filter -->
+            <div class="genre-tabs">
+                <div class="genre-tab active">全部</div>
+                <div class="genre-tab">剧情</div>
+                <div class="genre-tab">动作</div>
+                <div class="genre-tab">悬疑</div>
+                <div class="genre-tab">喜剧</div>
+                <div class="genre-tab">科幻</div>
+                <div class="genre-tab">历史</div>
+            </div>
+
+            <!-- Top 10 Section -->
+            <section class="rank-section">
+                <div class="section-header">
+                    <h2 class="section-title">年度热门国产电影 TOP 10</h2>
+                    <a href="#" class="section-more">查看完整榜单 &rarr;</a>
+                </div>
+
+                <div class="rank-grid">
+                    <!-- Card 1 -->
+                    <article class="rank-card top-1">
+                        <div class="rank-number">1</div>
+                        <img src="https://picsum.photos/seed/movie1/400/600" alt="电影海报" class="card-image">
+                        <div class="card-content">
+                            <div class="card-meta">
+                                <span>2023</span>
+                                <span class="rating-badge">9.2</span>
+                            </div>
+                            <h3 class="card-title">深海探秘：未知的边界</h3>
+                            <p class="card-desc">一部关于深海探险与人性探索的科幻巨制，视觉效果震撼，剧情引人入胜。</p>
+                        </div>
+                    </article>
+
+                    <!-- Card 2 -->
+                    <article class="rank-card top-1">
+                        <div class="rank-number">2</div>
+                        <img src="https://picsum.photos/seed/movie2/400/600" alt="电影海报" class="card-image">
+                        <div class="card-content">
+                            <div class="card-meta">
+                                <span>2023</span>
+                                <span class="rating-badge">9.0</span>
+                            </div>
+                            <h3 class="card-title">岁月长河：归途</h3>
+                            <p class="card-desc">讲述了一群人在时代变迁中的坚守与抉择，温情与泪水交织的感人故事。</p>
+                        </div>
+                    </article>
+
+                    <!-- Card 3 -->
+                    <article class="rank-card top-1">
+                        <div class="rank-number">3</div>
+                        <img src="https://picsum.photos/seed/movie3/400/600" alt="电影海报" class="card-image">
+                        <div class="card-content">
+                            <div class="card-meta">
+                                <span>2022</span>
+                                <span class="rating-badge">8.8</span>
+                            </div>
+                            <h3 class="card-title">破晓之战</h3>
+                            <p class="card-desc">动作与特效完美结合的年度爽片，节奏紧凑，燃点十足。</p>
+                        </div>
+                    </article>
+
+                    <!-- Card 4 -->
+                    <article class="rank-card">
+                        <div class="rank-number">4</div>
+                        <img src="https://picsum.photos/seed/movie4/400/600" alt="电影海报" class="card-image">
+                        <div class="card-content">
+                            <div class="card-meta">
+                                <span>2023</span>
+                                <span class="rating-badge">8.5</span>
+                            </div>
+                            <h3 class="card-title">迷雾森林</h3>
+                            <p class="card-desc">悬疑犯罪题材佳作，层层反转的剧情让人拍案叫绝。</p>
+                        </div>
+                    </article>
+
+                    <!-- Card 5 -->
+                    <article class="rank-card">
+                        <div class="rank-number">5</div>
+                        <img src="https://picsum.photos/seed/movie5/400/600" alt="电影海报" class="card-image">
+                        <div class="card-content">
+                            <div class="card-meta">
+                                <span>2021</span>
+                                <span class="rating-badge">8.4</span>
+                            </div>
+                            <h3 class="card-title">城市微光</h3>
+                            <p class="card-desc">都市现实主义题材，关注普通人生活，引发广泛共鸣。</p>
+                        </div>
+                    </article>
+
+                    <!-- Card 6 -->
+                    <article class="rank-card">
+                        <div class="rank-number">6</div>
+                        <img src="https://picsum.photos/seed/movie6/400/600" alt="电影海报" class="card-image">
+                        <div class="card-content">
+                            <div class="card-meta">
+                                <span>2023</span>
+                                <span class="rating-badge">8.3</span>
+                            </div>
+                            <h3 class="card-title">舌尖上的中国：电影版</h3>
+                            <p class="card-desc">用镜头记录人间烟火，美食与情感的完美融合。</p>
+                        </div>
+                    </article>
+
+                    <!-- Card 7 -->
+                    <article class="rank-card">
+                        <div class="rank-number">7</div>
+                        <img src="https://picsum.photos/seed/movie7/400/600" alt="电影海报" class="card-image">
+                        <div class="card-content">
+                            <div class="card-meta">
+                                <span>2022</span>
+                                <span class="rating-badge">8.1</span>
+                            </div>
+                            <h3 class="card-title">赛博纪元：重启</h3>
+                            <p class="card-desc">赛博朋克风格的国产科幻尝试，探讨人工智能与人类的未来。</p>
+                        </div>
+                    </article>
+
+                    <!-- Card 8 -->
+                    <article class="rank-card">
+                        <div class="rank-number">8</div>
+                        <img src="https://picsum.photos/seed/movie8/400/600" alt="电影海报" class="card-image">
+                        <div class="card-content">
+                            <div class="card-meta">
+                                <span>2023</span>
+                                <span class="rating-badge">8.0</span>
+                            </div>
+                            <h3 class="card-title">逆流而上</h3>
+                            <p class="card-desc">励志体育题材，展现拼搏精神，热血沸腾。</p>
+                        </div>
+                    </article>
+
+                    <!-- Card 9 -->
+                    <article class="rank-card">
+                        <div class="rank-number">9</div>
+                        <img src="https://picsum.photos/seed/movie9/400/600" alt="电影海报" class="card-image">
+                        <div class="card-content">
+                            <div class="card-meta">
+                                <span>2021</span>
+                                <span class="rating-badge">7.9</span>
+                            </div>
+                            <h3 class="card-title">山海之间</h3>
+                            <p class="card-desc">奇幻冒险故事，宏大的世界观构建，视觉奇观。</p>
+                        </div>
+                    </article>
+
+                    <!-- Card 10 -->
+                    <article class="rank-card">
+                        <div class="rank-number">10</div>
+                        <img src="https://picsum.photos/seed/movie10/400/600" alt="电影海报" class="card-image">
+                        <div class="card-content">
+                            <div class="card-meta">
+                                <span>2022</span>
+                                <span class="rating-badge">7.8</span>
+                            </div>
+                            <h3 class="card-title">老友记：重聚</h3>
+                            <p class="card-desc">温情怀旧喜剧，唤起观众对青春岁月的美好回忆。</p>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Content Split: News & Sidebar -->
+            <div class="news-grid">
+                <section>
+                    <div class="section-header">
+                        <h2 class="section-title">最新影视资讯</h2>
+                    </div>
+                    <ul class="news-list">
+                        <li class="news-item">
+                            <div class="news-date">2023-10-24</div>
+                            <div class="news-content">
+                                <h3>第36届大众电影百花奖获奖名单揭晓</h3>
+                                <p>凭借精湛的演技和细腻的表演，李某某凭借《岁月长河》获得最佳男主角...</p>
+                            </div>
+                        </li>
+                        <li class="news-item">
+                            <div class="news-date">2023-10-22</div>
+                            <div class="news-content">
+                                <h3>国产科幻电影《深空》定档春节档</h3>
+                                <p>斥资数亿的顶级制作团队打造，特效场面堪比好莱坞大片，备受期待。</p>
+                            </div>
+                        </li>
+                        <li class="news-item">
+                            <div class="news-date">2023-10-20</div>
+                            <div class="news-content">
+                                <h3>2023年国庆档票房突破50亿大关</h3>
+                                <p>多部优质国产电影上映，观众观影热情高涨，市场表现强劲。</p>
+                            </div>
+                        </li>
+                        <li class="news-item">
+                            <div class="news-date">2023-10-18</div>
+                            <div class="news-content">
+                                <h3>导演张艺谋新片《影》幕后制作揭秘</h3>
+                                <p>揭秘电影中独特的水墨特效制作过程，展现中国传统文化之美。</p>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+
+                <aside>
+                    <div class="sidebar-widget">
+                        <h3 class="widget-title">热门标签</h3>
+                        <div class="tag-cloud">
+                            <a href="#" class="tag">年度最佳</a>
+                            <a href="#" class="tag">获奖影片</a>
+                            <a href="#" class="tag">春节档</a>
+                            <a href="#" class="tag">文艺片</a>
+                            <a href="#" class="tag">喜剧</a>
+                            <a href="#" class="tag">动作</a>
+                            <a href="#" class="tag">悬疑</a>
+                            <a href="#" class="tag">科幻</a>
+                            <a href="#" class="tag">传记</a>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-widget">
+                        <h3 class="widget-title">观影小贴士</h3>
+                        <p style="color:var(--text-sub); font-size:0.9rem;">
+                            在选择观看国产电影时，建议优先关注豆瓣、IMDb等平台的评分数据。同时，根据个人喜好选择合适的类型，如喜欢视觉冲击可选择科幻动作片，喜欢思考可选择剧情悬疑片。
+                        </p>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <div class="logo" style="margin-bottom: 1rem;">
+                    <span>🎬</span> 影视指南
+                </div>
+                <p style="color: var(--text-sub); font-size: 0.9rem;">
+                    专注国产电影资讯与推荐，致力于为影迷提供最权威、最及时的观影指南。
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>快速导航</h4>
+                <ul>
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#">最新上映</a></li>
+                    <li><a href="#">票房排行</a></li>
+                    <li><a href="#">影迷社区</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>热门分类</h4>
+                <ul>
+                    <li><a href="#">动作电影</a></li>
+                    <li><a href="#">爱情电影</a></li>
+                    <li><a href="#">恐怖电影</a></li>
+                    <li><a href="#">纪录片</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>联系我们</h4>
+                <ul>
+                    <li><a href="#">合作推广</a></li>
+                    <li><a href="#">意见反馈</a></li>
+                    <li><a href="#">免责声明</a></li>
+                    <li><a href="#">隐私政策</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2023 影视指南 版权所有. 本站内容仅供学习交流使用.
+        </div>
+    </footer>
+
+</body>
+                  </html>
