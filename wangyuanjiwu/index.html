@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="王元姬无惨 - 探索《原神》角色王元姬与《鬼灭之刃》反派鬼舞辻无惨的跨界对比分析、角色设定解析及同人创作指南。">
+    <meta name="keywords" content="王元姬无惨, 原神, 鬼灭之刃, 角色分析, 跨界同人, 游戏攻略">
+    <title>王元姬无惨 - 跨界角色深度解析与同人创作指南</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --text-light: #666666;
+            --border-radius: 8px;
+            --spacing-unit: 1rem;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* 布局容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        /* 头部 */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero 区域 */
+        .hero {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* 内容网格 */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        /* 文章列表 */
+        .article-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .article-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: flex;
+            transition: transform 0.2s;
+        }
+
+        .article-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .article-card img {
+            width: 200px;
+            object-fit: cover;
+        }
+
+        .article-content {
+            padding: 20px;
+            flex: 1;
+        }
+
+        .article-content h3 {
+            margin-bottom: 10px;
+            font-size: 1.25rem;
+        }
+
+        .article-content p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 8px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* 侧边栏 */
+        aside {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .widget {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .widget h3 {
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .ranking-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 0.95rem;
+        }
+
+        .ranking-list li:last-child {
+            border-bottom: none;
+        }
+
+        .rank-num {
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-right: 10px;
+        }
+
+        /* 分类导航 */
+        .category-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .cat-btn {
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .cat-btn.active, .cat-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* 对比表格 */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comparison-table th {
+            background-color: #f4f4f4;
+            font-weight: 600;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 40px 0;
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            .article-card {
+                flex-direction: column;
+            }
+            .article-card img {
+                width: 100%;
+                height: 200px;
+            }
+            .header-content {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 0;
+            }
+            nav ul {
+                margin-top: 10px;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <span>W</span>王元姬无惨
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#analysis">角色解析</a></li>
+                    <li><a href="#comparison">跨界对比</a></li>
+                    <li><a href="#creation">同人创作</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>王元姬无惨</h1>
+            <p>探索《原神》与《鬼灭之刃》中的跨界奇想，解析角色特质与同人创作灵感。</p>
+        </div>
+    </section>
+
+    <main class="container">
+        <!-- 分类导航 -->
+        <div class="category-nav">
+            <button class="cat-btn active">全部</button>
+            <button class="cat-btn">角色设定</button>
+            <button class="cat-btn">同人图鉴</button>
+            <button class="cat-btn">剧情脑洞</button>
+        </div>
+
+        <div class="content-grid">
+            <!-- 主要内容区 -->
+            <div class="main-content">
+                <article class="article-card">
+                    <img src="https://picsum.photos/seed/yuanji/200/200" alt="王元姬概念图">
+                    <div class="article-content">
+                        <span class="tag">角色设定</span>
+                        <h3>王元姬：魏晋风华与策略智慧</h3>
+                        <p>王元姬是《原神》中虚拟角色，源自历史与游戏设定。作为虚拟角色，她代表了智慧与策略的化身。在讨论“王元姬无惨”这一组合时，我们首先聚焦于王元姬本身的性格特征：冷静、果敢，以及其作为棋手和策略家的特质。这种理智与掌控力，是构建跨界故事的重要基石。</p>
+                        <a href="#" style="color: var(--accent-color); font-weight: 500;">阅读全文 &rarr;</a>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <img src="https://picsum.photos/seed/mukagen/200/200" alt="鬼舞辻无惨概念图">
+                    <div class="article-content">
+                        <span class="tag">反派设定</span>
+                        <h3>鬼舞辻无惨：永生的执念与痛苦</h3>
+                        <p>鬼舞辻无惨是《鬼灭之刃》中的核心反派。他追求永生，却受制于阳光与紫藤花。无惨的性格充满了傲慢、恐惧以及对力量的病态渴望。将王元姬的“掌控力”与无惨的“永生执念”结合，可以产生极具张力的戏剧冲突。</p>
+                        <a href="#" style="color: var(--accent-color); font-weight: 500;">阅读全文 &rarr;</a>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <img src="https://picsum.photos/seed/crossover/200/200" alt="跨界同人概念图">
+                    <div class="article-content">
+                        <span class="tag">同人创作</span>
+                        <h3>王元姬无惨：一场跨次元的棋局</h3>
+                        <p>在众多同人创作中，王元姬与无惨的组合常被描绘成一场高智商的博弈。王元姬或许看穿了无惨的弱点，而利用自身的智慧将其引入陷阱。这种设定不仅保留了角色的核心魅力，还为故事增添了悬疑与策略的元素。</p>
+                        <a href="#" style="color: var(--accent-color); font-weight: 500;">阅读全文 &rarr;</a>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <img src="https://picsum.photos/seed/tech/200/200" alt="科技与魔法">
+                    <div class="article-content">
+                        <span class="tag">世界观</span>
+                        <h3>力量体系的碰撞与融合</h3>
+                        <p>探讨王元姬的元素力量（神之眼）与无惨的血鬼术之间的差异。一个是顺应自然元素的规则之力，另一个是违背自然规律的血肉变异。两者相遇，是规则的对决，还是力量的融合？这是“王元姬无惨”题材中最值得深挖的设定之一。</p>
+                        <a href="#" style="color: var(--accent-color); font-weight: 500;">阅读全文 &rarr;</a>
+                    </div>
+                </article>
+            </div>
+
+            <!-- 侧边栏 -->
+            <aside>
+                <div class="widget">
+                    <h3>热门解读</h3>
+                    <ul class="ranking-list">
+                        <li><span class="rank-num">1</span> 王元姬如何智取无惨</li>
+                        <li><span class="rank-num">2</span> 无惨视角下的王元姬</li>
+                        <li><span class="rank-num">3</span> 跨界角色的战力排行</li>
+                        <li><span class="rank-num">4</span> 紫藤花与神之眼的关联</li>
+                    </ul>
+                </div>
+
+                <div class="widget">
+                    <h3>创作指南</h3>
+                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 10px;">如何写出精彩的同人故事？</p>
+                    <ul class="ranking-list">
+                        <li><span class="rank-num">1</span> 建立合理的剧情逻辑</li>
+                        <li><span class="rank-num">2</span> 保持人物性格一致性</li>
+                        <li><span class="rank-num">3</span> 注重画面感的描写</li>
+                    </ul>
+                </div>
+
+                <div class="widget">
+                    <h3>相关标签</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                        <span class="tag">#原神同人</span>
+                        <span class="tag">#鬼灭之刃</span>
+                        <span class="tag">#脑洞</span>
+                        <span class="tag">#攻略</span>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- 对比表格 -->
+        <section id="comparison" style="margin-bottom: 40px;">
+            <h2 style="margin-bottom: 20px; font-size: 1.5rem;">核心特质对比</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>特质维度</th>
+                        <th>王元姬</th>
+                        <th>鬼舞辻无惨</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>核心动机</td>
+                        <td>守护、策略、家国大义</td>
+                        <td>永生、权力、逃避死亡</td>
+                    </tr>
+                    <tr>
+                        <td>力量来源</td>
+                        <td>神之眼、元素之力</td>
+                        <td>血鬼术、日之呼吸</td>
+                    </tr>
+                    <tr>
+                        <td>性格关键词</td>
+                        <td>冷静、睿智、从容</td>
+                        <td>残忍、多疑、傲慢</td>
+                    </tr>
+                    <tr>
+                        <td>弱点</td>
+                        <td>过度依赖辅助或特定阵型</td>
+                        <td>阳光、紫藤花</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- FAQ 区域 -->
+        <section id="faq" style="background: white; padding: 30px; border-radius: 8px;">
+            <h2 style="margin-bottom: 20px; font-size: 1.5rem;">常见问题解答</h2>
+            <div style="display: grid; gap: 15px;">
+                <details>
+                    <summary style="cursor: pointer; font-weight: 600;">王元姬无惨属于官方设定吗？</summary>
+                    <p style="margin-top: 10px; color: #666;">不属于。这是一个典型的粉丝二创概念，将两个不同世界观的角色进行组合与想象。</p>
+                </details>
+                <details>
+                    <summary style="cursor: pointer; font-weight: 600;">这种组合通常出现在哪里？</summary>
+                    <p style="margin-top: 10px; color: #666;">主要出现在网络同人小说、插画作品以及粉丝论坛的讨论中。</p>
+                </details>
+                <details>
+                    <summary style="cursor: pointer; font-weight: 600;">为什么会有这种跨界设定？</summary>
+                    <p style="margin-top: 10px; color: #666;">主要因为两个角色的形象和性格都具有很强的代表性，容易产生戏剧冲突，引发创作灵感。</p>
+                </details>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 王元姬无惨 - 粉丝创作与解析平台. All Rights Reserved.</p>
+            <p>本站内容仅供娱乐与参考，不涉及任何官方商业合作。</p>
+        </div>
+    </footer>
+
+</body>
+</html>
