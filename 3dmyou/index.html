@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="3dm游戏论坛 - 国内领先的游戏玩家社区，提供单机游戏攻略、破解补丁、MOD下载、游戏评测及玩家交流讨论。">
+    <meta name="keywords" content="3dm游戏论坛,3DM,游戏攻略,单机游戏,破解补丁,MOD下载,游戏评测">
+    <title>3dm游戏论坛-单机游戏攻略、破解补丁与玩家社区</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #d32f2f; /* 3DM Red */
+            --secondary-color: #1a1a1a;
+            --bg-color: #f4f4f4;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-light: #666666;
+            --border-color: #e0e0e0;
+            --spacing-unit: 8px;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Utility */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            font-size: 12px;
+            border-radius: 4px;
+            background-color: #eee;
+            color: #555;
+            margin-right: 4px;
+        }
+
+        .badge-hot {
+            background-color: #ffebee;
+            color: var(--primary-color);
+        }
+
+        .badge-new {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+            margin-left: 4px;
+        }
+
+        .main-nav ul {
+            display: flex;
+            gap: 24px;
+        }
+
+        .main-nav a {
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 12px;
+            font-size: 14px;
+        }
+
+        .btn-login {
+            padding: 6px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .btn-register {
+            padding: 6px 16px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 4px;
+        }
+
+        .btn-register:hover {
+            background-color: #b71c1c;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #2c3e50 0%, #4ca1af 100%);
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 24px;
+        }
+
+        .hero-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .hero-text p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+
+        .search-bar {
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+            display: flex;
+            width: 400px;
+        }
+
+        .search-bar input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 0 12px;
+            font-size: 14px;
+        }
+
+        .search-bar button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Main Layout */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 240px 1fr 300px;
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        /* Sidebar Left */
+        .sidebar-left {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 16px;
+            border: 1px solid var(--border-color);
+            height: fit-content;
+        }
+
+        .sidebar-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .category-list li {
+            margin-bottom: 8px;
+        }
+
+        .category-list a {
+            display: block;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: var(--text-main);
+        }
+
+        .category-list a:hover {
+            background-color: #f5f5f5;
+        }
+
+        .category-list a.active {
+            background-color: #ffebee;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* Content Area */
+        .content-area {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .section-header h2 {
+            font-size: 20px;
+            font-weight: 700;
+            position: relative;
+            padding-left: 12px;
+        }
+
+        .section-header h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 18px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        /* Hot Games Grid */
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 16px;
+        }
+
+        .game-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+
+        .game-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .game-thumb {
+            width: 100%;
+            height: 240px;
+            background-color: #ddd;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .game-info {
+            padding: 12px;
+        }
+
+        .game-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .game-meta {
+            font-size: 12px;
+            color: var(--text-light);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Forum List */
+        .forum-list {
+            background: var(--card-bg);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .forum-item {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.2s;
+        }
+
+        .forum-item:last-child {
+            border-bottom: none;
+        }
+
+        .forum-item:hover {
+            background-color: #fafafa;
+        }
+
+        .forum-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #eee;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+
+        .forum-content {
+            flex: 1;
+        }
+
+        .forum-name {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .forum-desc {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 6px;
+        }
+
+        .forum-stats {
+            font-size: 12px;
+            color: #999;
+            display: flex;
+            gap: 12px;
+        }
+
+        /* Sidebar Right */
+        .sidebar-right {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .news-list li {
+            padding: 12px 0;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .news-list li:last-child {
+            border-bottom: none;
+        }
+
+        .news-title {
+            font-size: 14px;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .news-date {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .download-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 16px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .download-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .download-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 4px;
+            font-size: 14px;
+            margin-top: 12px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: #aaa;
+            padding: 40px 0;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .footer-col h3 {
+            color: white;
+            font-size: 16px;
+            margin-bottom: 16px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 24px;
+            border-top: 1px solid #333;
+            font-size: 13px;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .main-grid {
+                grid-template-columns: 200px 1fr;
+            }
+            .sidebar-right {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                height: auto;
+                padding: 12px 0;
+                gap: 12px;
+            }
+            .main-nav {
+                display: none; /* Simplify for mobile */
+            }
+            .search-bar {
+                width: 100%;
+            }
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 16px;
+            }
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+            .sidebar-left {
+                display: none;
+            }
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-inner">
+        <a href="#" class="logo">3DM<span>游戏论坛</span></a>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#">首页</a></li>
+                <li><a href="#">单机游戏</a></li>
+                <li><a href="#">网络游戏</a></li>
+                <li><a href="#">硬件外设</a></li>
+                <li><a href="#">玩家论坛</a></li>
+            </ul>
+        </nav>
+        <div class="user-actions">
+            <a href="#" class="btn-login">登录</a>
+            <a href="#" class="btn-register">注册</a>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>探索无限游戏世界</h1>
+                <p>汇聚海量单机游戏资源、专业攻略与玩家社区，为您提供最佳的游戏体验。</p>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="搜索游戏、攻略、补丁...">
+                <button>搜索</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="main-grid">
+        <!-- 左侧导航 -->
+        <aside class="sidebar-left">
+            <div class="sidebar-title">游戏分类</div>
+            <ul class="category-list">
+                <li><a href="#" class="active">全部游戏</a></li>
+                <li><a href="#">动作冒险</a></li>
+                <li><a href="#">RPG角色扮演</a></li>
+                <li><a href="#">策略战棋</a></li>
+                <li><a href="#">射击游戏</a></li>
+                <li><a href="#">模拟经营</a></li>
+                <li><a href="#">体育竞技</a></li>
+                <li><a href="#">独立游戏</a></li>
+            </ul>
+
+            <div class="sidebar-title" style="margin-top: 24px;">热门专区</div>
+            <ul class="category-list">
+                <li><a href="#">赛博朋克2077</a></li>
+                <li><a href="#">艾尔登法环</a></li>
+                <li><a href="#">黑神话：悟空</a></li>
+                <li><a href="#">原神</a></li>
+                <li><a href="#">GTA 5</a></li>
+            </ul>
+        </aside>
+
+        <!-- 中间内容 -->
+        <main class="content-area">
+            
+            <!-- 热门游戏推荐 -->
+            <section>
+                <div class="section-header">
+                    <h2>本周热门推荐</h2>
+                    <a href="#" style="font-size: 14px; color: var(--text-light);">查看更多 &gt;</a>
+                </div>
+                <div class="game-grid">
+                    <article class="game-card">
+                        <div class="game-thumb">
+                            <img src="https://picsum.photos/seed/game1/300/400" alt="游戏封面">
+                        </div>
+                        <div class="game-info">
+                            <h3 class="game-title">赛博朋克 2077</h3>
+                            <div class="game-meta">
+                                <span class="badge badge-hot">热</span>
+                                <span>RPG</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="game-card">
+                        <div class="game-thumb">
+                            <img src="https://picsum.photos/seed/game2/300/400" alt="游戏封面">
+                        </div>
+                        <div class="game-info">
+                            <h3 class="game-title">艾尔登法环</h3>
+                            <div class="game-meta">
+                                <span class="badge badge-new">新</span>
+                                <span>ARPG</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="game-card">
+                        <div class="game-thumb">
+                            <img src="https://picsum.photos/seed/game3/300/400" alt="游戏封面">
+                        </div>
+                        <div class="game-info">
+                            <h3 class="game-title">博德之门3</h3>
+                            <div class="game-meta">
+                                <span class="badge badge-hot">热</span>
+                                <span>CRPG</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="game-card">
+                        <div class="game-thumb">
+                            <img src="https://picsum.photos/seed/game4/300/400" alt="游戏封面">
+                        </div>
+                        <div class="game-info">
+                            <h3 class="game-title">霍格沃茨之遗</h3>
+                            <div class="game-meta">
+                                <span>开放世界</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="game-card">
+                        <div class="game-thumb">
+                            <img src="https://picsum.photos/seed/game5/300/400" alt="游戏封面">
+                        </div>
+                        <div class="game-info">
+                            <h3 class="game-title">星空 Starfield</h3>
+                            <div class="game-meta">
+                                <span>科幻</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="game-card">
+                        <div class="game-thumb">
+                            <img src="https://picsum.photos/seed/game6/300/400" alt="游戏封面">
+                        </div>
+                        <div class="game-info">
+                            <h3 class="game-title">GTA 6</h3>
+                            <div class="game-meta">
+                                <span class="badge badge-hot">期待</span>
+                                <span>动作</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- 论坛板块 -->
+            <section>
+                <div class="section-header">
+                    <h2>玩家热议论坛</h2>
+                </div>
+                <div class="forum-list">
+                    <div class="forum-item">
+                        <div class="forum-icon">🎮</div>
+                        <div class="forum-content">
+                            <a href="#" class="forum-name">单机游戏讨论区</a>
+                            <p class="forum-desc">分享单机游戏心得，讨论剧情走向，交流通关技巧。</p>
+                            <div class="forum-stats">
+                                <span>今日: 12,403 帖</span>
+                                <span>会员: 890,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="forum-item">
+                        <div class="forum-icon">🔧</div>
+                        <div class="forum-content">
+                            <a href="#" class="forum-name">游戏破解与MOD</a>
+                            <p class="forum-desc">提供安全无毒的游戏补丁、破解工具及MOD资源下载。</p>
+                            <div class="forum-stats">
+                                <span>今日: 5,200 帖</span>
+                                <span>资源: 15,000+</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="forum-item">
+                        <div class="forum-icon">💻</div>
+                        <div class="forum-content">
+                            <a href="#" class="forum-name">硬件外设专区</a>
+                            <p class="forum-desc">显卡、主机、外设评测与选购指南。</p>
+                            <div class="forum-stats">
+                                <span>今日: 3,100 帖</span>
+                                <span>装机: 2,300</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="forum-item">
+                        <div class="forum-icon">🤔</div>
+                        <div class="forum-content">
+                            <a href="#" class="forum-name">游戏求助与问答</a>
+                            <p class="forum-desc">卡关了？找不到路？来这里提问，大神为你解答。</p>
+                            <div class="forum-stats">
+                                <span>今日: 8,900 帖</span>
+                                <span>待解: 120</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="forum-item">
+                        <div class="forum-icon">🎬</div>
+                        <div class="forum-content">
+                            <a href="#" class="forum-name">游戏视频与直播</a>
+                            <p class="forum-desc">精彩游戏集锦、实况解说与主播互动。</p>
+                            <div class="forum-stats">
+                                <span>今日: 4,500 帖</span>
+                                <span>视频: 500+</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 攻略技巧 -->
+            <section>
+                <div class="section-header">
+                    <h2>精选攻略技巧</h2>
+                </div>
+                <div class="forum-list">
+                    <div class="forum-item">
+                        <div class="forum-content">
+                            <a href="#" class="forum-name" style="font-size: 14px;">[攻略] 艾尔登法环全Boss位置与打法详解</a>
+                            <div class="forum-stats">
+                                <span>作者: 狂战士</span>
+                                <span>回复: 456</span>
+                                <span>浏览: 12.5w</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="forum-item">
+                        <div class="forum-content">
+                            <a href="#" class="forum-name" style="font-size: 14px;">[评测] 赛博朋克2077 2.0版本更新后体验报告</a>
+                            <div class="forum-stats">
+                                <span>作者: 3DM评测组</span>
+                                <span>回复: 890</span>
+                                <span>浏览: 8.2w</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="forum-item">
+                        <div class="forum-content">
+                            <a href="#" class="forum-name" style="font-size: 14px;">[教程] 如何使用N卡控制台修改游戏数值</a>
+                            <div class="forum-stats">
+                                <span>作者: 技术宅</span>
+                                <span>回复: 210</span>
+                                <span>浏览: 5.1w</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- 右侧侧边栏 -->
+        <aside class="sidebar-right">
+            <div class="download-card">
+                <div class="download-icon">📥</div>
+                <h3>官方客户端下载</h3>
+                <p style="font-size: 13px; color: #666; margin: 8px 0;">极速下载，安全无毒</p>
+                <a href="#" class="download-btn">立即下载 3DM论坛 APP</a>
+            </div>
+
+            <div style="background: var(--card-bg); border-radius: 8px; border: 1px solid var(--border-color); padding: 16px;">
+                <div class="sidebar-title">最新动态</div>
+                <ul class="news-list">
+                    <li>
+                        <a href="#" class="news-title">《黑神话：悟空》发售日定档8月20日</a>
+                        <span class="news-date">2小时前</span>
+                    </li>
+                    <li>
+                        <a href="#" class="news-title">Steam秋季促销即将开启，玩家需注意</a>
+                        <span class="news-date">5小时前</span>
+                    </li>
+                    <li>
+                        <a href="#" class="news-title">显卡价格回归理性，RTX 4060值得入手吗？</a>
+                        <span class="news-date">昨天</span>
+                    </li>
+                    <li>
+                        <a href="#" class="news-title">3DM论坛新版UI改版公告</a>
+                        <span class="news-date">2天前</span>
+                    </li>
+                    <li>
+                        <a href="#" class="news-title">年度最佳游戏提名名单公布</a>
+                        <span class="news-date">3天前</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div style="background: var(--card-bg); border-radius: 8px; border: 1px solid var(--border-color); padding: 16px;">
+                <div class="sidebar-title">热门标签</div>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                    <a href="#" class="badge">3DM</a>
+                    <a href="#" class="badge">游戏攻略</a>
+                    <a href="#" class="badge">单机游戏</a>
+                    <a href="#" class="badge">破解补丁</a>
+                    <a href="#" class="badge">MOD</a>
+                    <a href="#" class="badge">显卡</a>
+                    <a href="#" class="badge">主机</a>
+                    <a href="#" class="badge">Steam</a>
+                </div>
+            </div>
+        </aside>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>关于我们</h3>
+                <ul>
+                    <li><a href="#">论坛简介</a></li>
+                    <li><a href="#">加入我们</a></li>
+                    <li><a href="#">联系方式</a></li>
+                    <li><a href="#">广告合作</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>帮助中心</h3>
+                <ul>
+                    <li><a href="#">用户注册</a></li>
+                    <li><a href="#">发帖规范</a></li>
+                    <li><a href="#">常见问题</a></li>
+                    <li><a href="#">举报反馈</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="#">Steam</a></li>
+                    <li><a href="#">Epic Games</a></li>
+                    <li><a href="#">GOG</a></li>
+                    <li><a href="#">IGN</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>关注我们</h3>
+                <ul>
+                    <li><a href="#">新浪微博</a></li>
+                    <li><a href="#">微信公众号</a></li>
+                    <li><a href="#">QQ群：123456789</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023-2024 3dm游戏论坛 版权所有 | 仅供学习交流使用，请支持正版游戏</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+                              </html>
