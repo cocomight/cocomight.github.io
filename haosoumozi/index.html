@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>好搜摸字版-触屏时代，摸字搜索</title>
+    <meta name="description" content="好搜摸字版是一款专为触屏设备设计的创新搜索工具，通过手势操作实现流畅的“摸字”体验，解决打字慢、输入难的问题，让搜索更直观、更高效。">
+    <meta name="keywords" content="好搜摸字版,触屏搜索,摸字搜索,手势输入,好搜">
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1e40af;
+            --accent-color: #f59e0b;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-sub: #64748b;
+            --border-radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Utility */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .text-center { text-align: center; }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-sub);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            background: var(--primary-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .btn-download {
+            background: var(--primary-color);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .btn-download:hover {
+            background: var(--primary-dark);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 0 80px;
+            background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: var(--text-sub);
+            margin-bottom: 40px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--text-main);
+            border: 1px solid #cbd5e1;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
+        }
+
+        /* Features */
+        .features {
+            background: var(--card-bg);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .feature-card {
+            padding: 40px 30px;
+            border-radius: var(--border-radius);
+            background: var(--bg-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: #dbeafe;
+            color: var(--primary-color);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+        }
+
+        /* How it works */
+        .how-it-works {
+            background: #f1f5f9;
+        }
+
+        .steps-container {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .steps-container::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 50px;
+            right: 50px;
+            height: 2px;
+            background: #cbd5e1;
+            z-index: 0;
+        }
+
+        .step-item {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            flex: 1;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border: 4px solid var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .step-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .step-item p {
+            color: var(--text-sub);
+            font-size: 0.9rem;
+            padding: 0 10px;
+        }
+
+        /* Device Showcase */
+        .showcase {
+            background: var(--card-bg);
+        }
+
+        .device-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .device-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .device-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+        }
+
+        .device-icon {
+            font-size: 2rem;
+        }
+
+        .device-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .device-info p {
+            color: var(--text-sub);
+            font-size: 0.9rem;
+        }
+
+        /* FAQ */
+        .faq {
+            background: #f8fafc;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .faq-item {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .faq-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .faq-item p {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #1e293b;
+            color: #94a3b8;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h2 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .footer-brand p {
+            max-width: 300px;
+            font-size: 0.9rem;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col a:hover {
+            color: white;
+        }
+
+        .copyright {
+            border-top: 1px solid #334155;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-grid, .feature-grid, .device-grid, .faq-grid, .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .steps-container {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .steps-container::before {
+                display: none;
+            }
+
+            .nav-wrapper {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 0;
+                gap: 15px;
+            }
+
+            nav ul {
+                gap: 15px;
+                font-size: 0.9rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">
+                好搜 <span>摸字版</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#features">功能特点</a></li>
+                    <li><a href="#how-it-works">使用方法</a></li>
+                    <li><a href="#devices">支持设备</a></li>
+                    <li><a href="#faq">常见问题</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="btn-download">立即下载</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <h1>触屏时代，<br>摸字搜索</h1>
+                    <p>告别繁琐的键盘输入，好搜摸字版将手势与搜索完美结合。只需轻轻一划，即可精准捕捉您的搜索意图，让每一次触碰都充满智慧。</p>
+                    <div class="hero-actions">
+                        <a href="#" class="btn-primary">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            免费下载
+                        </a>
+                        <a href="#how-it-works" class="btn-secondary">查看演示</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <!-- Placeholder for UI Visual -->
+                    <img src="https://picsum.photos/seed/search_ui/600/400" alt="好搜摸字版界面演示">
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="section-padding features">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-title">重新定义触屏搜索体验</h2>
+                    <p class="section-subtitle">专为移动端优化，融合了直觉化操作与强大的语义理解能力。</p>
+                </div>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">✌️</div>
+                        <h3>直觉手势</h3>
+                        <p>无需学习复杂规则，支持划动、点击、长按等多种手势组合，像操作实体键盘一样自然。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>毫秒级响应</h3>
+                        <p>本地化算法处理，输入响应速度提升300%，即使在弱网环境下也能秒出结果。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>精准联想</h3>
+                        <p>基于海量搜索大数据，通过手势轨迹实时预测您的搜索意图，减少误操作。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section id="how-it-works" class="section-padding how-it-works">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-title">三步开启摸字之旅</h2>
+                    <p class="section-subtitle">简单直观的操作流程，让任何人都能快速上手。</p>
+                </div>
+                <div class="steps-container">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <h4>启动应用</h4>
+                        <p>在手机桌面或浏览器中点击“好搜摸字版”图标，启动搜索界面。</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <h4>手势输入</h4>
+                        <p>在搜索框内，按住屏幕任意位置，根据提示进行滑动或点击操作。</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <h4>获取结果</h4>
+                        <p>松开手指，系统即刻解析您的手势轨迹，展示精准的搜索结果。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Device Support -->
+        <section id="devices" class="section-padding showcase">
+            <div class="container device-grid">
+                <div class="device-image">
+                    <img src="https://picsum.photos/seed/mobile_device/600/500" alt="多种设备支持" style="width: 100%; border-radius: 12px;">
+                </div>
+                <div class="device-list">
+                    <h2 class="section-title">全平台覆盖</h2>
+                    <p style="color: var(--text-sub); margin-bottom: 20px;">好搜摸字版支持市面上主流的移动操作系统，适配各种屏幕尺寸与分辨率。</p>
+                    
+                    <div class="device-item">
+                        <div class="device-icon">📱</div>
+                        <div class="device-info">
+                            <h4>Android 系统</h4>
+                            <p>适配 8.0 及以上版本，支持手势调节与个性化设置。</p>
+                        </div>
+                    </div>
+
+                    <div class="device-item">
+                        <div class="device-icon">🍎</div>
+                        <div class="device-info">
+                            <h4>iOS 系统</h4>
+                            <p>完美支持 iPhone 与 iPad，优化了刘海屏与灵动岛交互。</p>
+                        </div>
+                    </div>
+
+                    <div class="device-item">
+                        <div class="device-icon">💻</div>
+                        <div class="device-info">
+                            <h4>平板与折叠屏</h4>
+                            <p>针对大屏设备优化了手势区域，支持分屏操作模式。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="section-padding faq">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-title">常见问题</h2>
+                    <p class="section-subtitle">关于好搜摸字版的使用技巧与疑问解答。</p>
+                </div>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h4>摸字搜索准确率高吗？</h4>
+                        <p>是的。好搜摸字版采用了先进的轨迹识别算法，经过数亿次数据训练，能够准确识别用户的划动意图，准确率远超传统虚拟键盘。</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>支持离线使用吗？</h4>
+                        <p>部分基础功能支持离线使用，无需网络连接即可进行简单的手势输入与导航。核心搜索功能需要网络支持。</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>如何切换输入法？</h4>
+                        <p>在设置中找到“输入法管理”，选择“好搜摸字版”并将其设为默认输入方式即可。支持与系统原生输入法无缝切换。</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>隐私数据如何保护？</h4>
+                        <p>我们严格遵守隐私保护法规，所有手势轨迹数据仅在本地处理，不会上传至云端服务器，确保您的搜索隐私安全。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h2>好搜摸字版</h2>
+                    <p>致力于为触屏用户提供最自然、最高效的搜索体验，重新定义人机交互的未来。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>产品</h4>
+                    <ul>
+                        <li><a href="#">下载客户端</a></li>
+                        <li><a href="#">功能介绍</a></li>
+                        <li><a href="#">更新日志</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>支持</h4>
+                    <ul>
+                        <li><a href="#">帮助中心</a></li>
+                        <li><a href="#">用户反馈</a></li>
+                        <li><a href="#">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关于</h4>
+                    <ul>
+                        <li><a href="#">关于我们</a></li>
+                        <li><a href="#">服务条款</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 好搜摸字版 版权所有. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
